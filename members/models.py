@@ -12,6 +12,9 @@ GENDER = (
     ('Other', 'Other'),
 )
 
+def image_upload(inistance,filename):
+    imagename,extention = filename.split(".")
+    return "members/%s.%s"%(inistance.id,extention)
 
 class Members(models.Model):
     member_no = models.CharField(max_length=25)
@@ -21,6 +24,7 @@ class Members(models.Model):
     date_of_birth = models.DateField()
     member_type = models.CharField(max_length=25, choices=MEMBER_TYPES)
     gender = models.CharField(max_length=25, choices=GENDER)
+    member_image = models.ImageField(upload_to=image_upload)
 
     def __str__(self):
         return self.member_name
