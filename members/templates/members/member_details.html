@@ -1,17 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Member Detail</title>
-</head>
-<body>
-<h1>details</h1>
-<h3>{{member.member_no}}</h3>
-<h3>{{member.member_name}}</h3>
-<h3>{{member.id_no}}</h3>
-<h3>{{member.date_of_birth}}</h3>
-<h3>{{member.member_type}}</h3>
-<h3>{{member.gender}}</h3>
+{% extends 'base.html' %}
 
-</body>
-</html>
+{% block body %}
+<!-- header section -->
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <img src="{{member.member_image.url}}" width="300" height="200" class="img-responsive img-circle tm-border" alt="templatemo easy profile">
+                    <hr>
+                    <h1 class="tm-title bold shadow">{{member.member_name}}</h1>
+                    <h1 class="white bold shadow">{{member.member_type}}</h1>
+                </div>
+            </div>
+        </div>
+    </header>
+    <h3>{{member.member_no}}</h3>
+    <h3>{{member.member_name}}</h3>
+    <h3>{{member.id_no}}</h3>
+    <h3>{{member.date_of_birth}}</h3>
+    <h3>{{member.member_type}}</h3>
+    <h3>{{member.gender}}</h3>
+{% endblock body %}
