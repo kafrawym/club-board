@@ -5,5 +5,6 @@ app_name= 'members'
 
 urlpatterns = [
     path('', views.member_list),
-    path('<int:id>', views.member_details, name='member_det'),
+    path('<str:slug>', views.member_details, name='member_det'),
+    path('add_members', views.add_members, name='add_members'),
 ]
