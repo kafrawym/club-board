@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     # my apps
     'members',
+    "bootstrap4",
 ]
 
 MIDDLEWARE = [

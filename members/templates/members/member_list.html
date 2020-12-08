@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load bootstrap4 %}
 
 {% block body %}
     <head>
@@ -38,8 +39,18 @@
                 </tr>
             {% endfor %}
         </table>
-        <div id="toolbar">
-            <!-- <a class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="window.location.href='/members/add_members'">New User</a>-->
+        <div>
+            <h4> Add New Member</h4>
+            <form action="#" method="post" class="form" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% bootstrap_form form %}
+                {% buttons %}
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                {% endbuttons %}
+            </form>
         </div>
+        <!-- <div id="toolbar">
+            <a class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="window.location.href = 'Adding';">New Member</a>
+        </div>-->
     </body>
 {% endblock body %}
