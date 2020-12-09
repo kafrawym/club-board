@@ -1,26 +1,32 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import Members
 from .forms import AddMemberForm
+from django.urls import reverse
 
 
 # Create your views here.
 def member_list(request):
     member_list = Members.objects.all()
+    context = {'members': member_list}
+    return render(request, 'members/member_list.html', context)
 
+
+def add_member(request):
     if request.method == 'POST':
-        form = AddMemberForm(request.POST,request.FILES)
+        form = AddMemberForm(request.POST, request.FILES)
         if form.is_valid():
             myform = form.save(commit=False)
-            n = chr(myform.id)
+            n = '10'
+            myform.created_by = request.user
             myform.member_no = "AB" + n.zfill(6)
-            myform.member_name = myform.first_name + ' ' + myform.middle_name + ' ' + myform.last_name
-            myform.slug = '9875' + chr(myform.id) + '1245'
+            myform.save()
+            return redirect(reverse('members:member_list'))
 
     else:
         form = AddMemberForm()
 
-    context = {'members': member_list, 'form':form}
-    return render(request, 'members/member_list.html', context)
+    context = {'form': form}
+    return render(request, 'members/add_members.html', context)
 
 
 def member_details(request, slug):
