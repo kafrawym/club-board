@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<!-- header section -->
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+					{% if user_profile.image %}
+						<img src="{{user_profile.image.url}}" width="300" height="200" class="img-responsive img-circle tm-border" alt="templatemo easy profile">
+
+					{% endif %}
+                </div>
+            </div>
+        </div>
+    </header>
+<!-- about and skills section -->
+<section class="container">
+	<div class="row">
+		<div class="col-md-12 col-sm-12">
+			<div class="about">
+				<h3 class="accent" align="center">Profile Details</h3>
+				<h3>User Name:{{user_profile.user}}</h3>
+				<h3>Phone Number:{{user_profile.phone_number}}</h3>
+				<h3>Email:{{user_profile.user.email}}</h3>
+				<div>
+					<a href="{% url 'accounts:profile_edit' %}" class="btn btn-default btn-lg">Edit Profile</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock body %}
