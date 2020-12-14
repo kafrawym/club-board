@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load bootstrap4 %}
 {% block body %}
     <head>
         <meta charset="UTF-8">
@@ -12,11 +12,20 @@
         <script type="text/javascript" src="https://www.jeasyui.com/easyui/jquery.easyui.min.js"></script>
     </head>
     <body>
-        <h2>Members List</h2>
+        <h3></h3>
+        <div class="col-md-3 col-sm-12 mt-2">
+			<div class="about">
+				<h3 class="accent">Filter</h3>
+                <form method="GET">
+                    {% bootstrap_form myfilter.form %}
+                    <input type="submit" value="Search" class="btn btn-default btn-lg" >
+                </form>
+			</div>
+		</div>
 
-        <table id="dg" title="Members" class="easyui-datagrid" style="margin-left:auto;margin-right:auto;"
-                toolbar="#toolbar" pagination="true"
-                rownumbers="true" fitColumns="true" singleSelect="true">
+        <table class="easyui-datagrid" fitColumns="true" id="dg" pagination="true"
+               rownumbers="true" singleSelect="true"
+               style="margin-left:auto;margin-right:auto;" title="Members" toolbar="#toolbar">
             <thead>
                 <tr>
                     <th field="member_no" width="100">Member No</th>

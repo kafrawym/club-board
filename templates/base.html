@@ -9,14 +9,27 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="keywords" content="">
 	<meta name="description" content="">
-<!-- 
-Easy Profile Template
-http://www.templatemo.com/tm-467-easy-profile
--->
-	<!-- stylesheet css -->
 	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 	<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
 	<link rel="stylesheet" href="{% static 'css/templatemo-blue.css' %}">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-14 col-lg-12">
+				<ul class="social-icons">
+					<li><a href="/" class="fa fa-home"></a></li>
+                    <li><a href="{% url 'contact:contact' %}" class="fa fa-phone"></a></li>
+					{% if request.user.is_authenticated %}
+						<li><a href="{% url 'accounts:profile' %}">Profile</a></li>
+					{% else %}
+						<li><a href="{% url 'login' %}" class="fa fa-sign-in"></a></li>
+					{% endif %}
+					<li><a href="www.magmaksa.com" class="fa fa-sign-out"></a></li>
+					<li><a href="www.magmaksa.com">Sign Up</a></li>
+					<li><a href="{% url 'members:add_members' %}">Add Members</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
 </head>
 {% block body %}
 

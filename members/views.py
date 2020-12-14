@@ -1,16 +1,21 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render,redirect
 from .models import Members
 from .forms import AddMemberForm
 from django.urls import reverse
+from .filters import MembersFilter
 
 
 # Create your views here.
 def member_list(request):
     member_list = Members.objects.all()
-    context = {'members': member_list}
+    myfilter = MembersFilter(request.GET,queryset=member_list)
+    member_list = myfilter.qs
+    context = {'members': member_list,'myfilter':myfilter}
     return render(request, 'members/member_list.html', context)
 
 
+@login_required
 def add_member(request):
     if request.method == 'POST':
         form = AddMemberForm(request.POST, request.FILES)
